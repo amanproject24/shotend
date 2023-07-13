@@ -1,18 +1,22 @@
 import { React, useState, useEffect } from 'react'
+import CopyToClipboard from "react-copy-to-clipboard";
 import axios from "axios";
 
 const Home = () => {
 
     const [shortName, setShortName] = useState("");
     const [errorMessage, setErrorMessage] = useState('');
+    const [copyLink,setCopyLink] = useState('')
     const [sort, setSort] = useState([]);
 
    
-// handleInputChange 
+// Is used for managing the value of input.
     const handleInputChange = (e) => {
         setShortName(e.target.value)
 
     }
+
+  // for Submit button action.  
 
     const getShortEnd = async () => {
 
@@ -26,6 +30,7 @@ const Home = () => {
                 );
                 const stortenLink = fetchAPI.data.result.short_link
                 const linkstrore = [...sort, stortenLink]
+                setCopyLink(stortenLink)
                 setSort(linkstrore);
                 localStorage.setItem("storendLink", JSON.stringify(linkstrore))
 
@@ -39,6 +44,11 @@ const Home = () => {
         }
 
     }
+
+    const handleCopyToClipboard = () => {
+        // Display a success message to the user after copying to clipboard
+        alert("URL copied to clipboard!");
+      };
     useEffect(() => {
         const savedFromStorage = localStorage.getItem("storendLink");
         console.log(savedFromStorage)
@@ -80,14 +90,26 @@ const Home = () => {
 
                     </div>
                     {errorMessage && <p className="pl-44 pt-4 text-red-600 font-semibold">{errorMessage}</p>}
+                    {copyLink && (
+              <>
+               
+                <CopyToClipboard
+                  text={copyLink}
+                  onCopy={handleCopyToClipboard}
+                  
+                >
+                  <button
+                  className='bg-green-500 text-white mt-4 ml-8 flex justify-center items-center p-2 rounded-md'
+                    
+                    size="small"
+                    sx={{ ml: 2 }}
+                  >
+                    Copy URL to Clipboard
+                  </button>
+                </CopyToClipboard>
+              </>
+            )}
                     <div className=" mt-5 flex flex-col items-center">
-
-                        {/* {
-                            sort.map((items) => {
-                                <a href="/">{items}</a>
-                            })
-                        } */}
-
                         {sort.map((link, index) => (
                             <div key={index} >
                                 <a className="text-blue-900 font-semibold" href={link}>{link}</a>

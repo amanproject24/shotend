@@ -1,25 +1,27 @@
-# Getting Started with Create React App
+# Getting Started with Create ShotEnd APP by React Js.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Step-1 : First we create a React app using npx create-react-app FolderName.
 
-## Available Scripts
+Step-2 : After the intall react app we moving forward and add css library, So In this project I am using tailwind.css. 
 
-In the project directory, you can run:
+Step-3: Install Tailwind npm i tailwindcss.
 
-### `npm start`
+Step-4: After install the the tailwind we all dependency of tailwind and then start working on ui Section.
+
+Step-5: For Start the Project  
+
+## `npm i`
+## `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
 
-//This Project  is used to create a sortenlink,
 
-Technology Stack,
 
-User React js ,
-Tailwind for css libary.
+
+
+
+
 

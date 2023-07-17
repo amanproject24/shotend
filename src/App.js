@@ -4,11 +4,10 @@ import Home from "./Home"
 
 const App = () => {
   return (
+ // Using react router dom for routing .
     <BrowserRouter>
     <Routes>
- 
  <Route path="/" element={<Home/>}/>
-
     </Routes>
 
     </BrowserRouter>

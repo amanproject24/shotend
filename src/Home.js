@@ -91,7 +91,7 @@ const Home = () => {
                   onCopy={handleCopyToClipboard} 
                 >
                   <button
-                  className='bg-green-500 text-white mt-4 ml-8 flex justify-center items-center p-2 rounded-md'
+                  className='bg-green-500 text-white mt-4 ml-44 flex justify-center items-center p-2 rounded-md'
                     
                     size="small"
                     sx={{ ml: 2 }}

@@ -8,8 +8,7 @@ const Home = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const [copyLink,setCopyLink] = useState('')
     const [sort, setSort] = useState([]);
-
-   
+ 
 // Is used for managing the value of input.
     const handleInputChange = (e) => {
         setShortName(e.target.value)
@@ -32,8 +31,10 @@ const Home = () => {
                 setCopyLink(stortenLink)
                 setSort(linkstrore);
                 setShortName("")
+                //By Using the localStorage we save the data for displaying all the link after the url.
                 localStorage.setItem("storendLink", JSON.stringify(linkstrore))
                 setErrorMessage('');
+
             } catch {
 
                 setErrorMessage('Please enter the valid value.');
@@ -47,7 +48,7 @@ const Home = () => {
         alert("URL copied to clipboard!");
       };
 
-
+    //UseEffect is used When the project is refresh all the link are display.  
     useEffect(() => {
         const savedFromStorage = localStorage.getItem("storendLink");
         console.log(savedFromStorage)
@@ -66,6 +67,7 @@ const Home = () => {
                 <div className="bg-white  shadow-md rounded-md  w-3/5  p-4">
                     <h2 className="text-xl text-center font-bold mb-2">Link Shortener</h2>
                     <div className='mt-10 flex justify-center'>
+                      {/* Input field for the user to enter the value for conveting into sortend */}
                         <input
                             className="outline-none w-96  border-2 border-blue-500 rounded-md backdrop-blur-xl bg-white/20 shadow-md px-3 py-2 "
                             type="text"
@@ -75,7 +77,6 @@ const Home = () => {
                         />
                         <button
                             className=" bg-blue-500 text-white px-8 py-3 ml-4 rounded-md"
-
                             onClick={() => {
                                 getShortEnd()
                             }}
@@ -84,14 +85,17 @@ const Home = () => {
                         </button>
                     </div>
                     {errorMessage && <p className="pl-44 pt-4 text-red-600 font-semibold">{errorMessage}</p>}
-                    {copyLink && (
-              <>
+                    {copyLink && ( 
+                        <>
+                        <div className='ml-44 mt-2'>
+                        <a className="text-blue-900 font-semibold" rel="noopener noreferrer" target='_blank' href={`https://${copyLink}`} >{copyLink}</a>
+                        </div>
                 <CopyToClipboard
                   text={copyLink}
                   onCopy={handleCopyToClipboard} 
                 >
                   <button
-                  className='bg-green-500 text-white mt-4 ml-44 flex justify-center items-center p-2 rounded-md'
+                  className='bg-green-500 text-white mt-2 ml-44 flex justify-center items-center p-2 rounded-md'
                     
                     size="small"
                     sx={{ ml: 2 }}
@@ -99,7 +103,8 @@ const Home = () => {
                     Copy URL to Clipboard
                   </button>
                 </CopyToClipboard>
-              </>
+                </>
+              
             )}
                     <div className=" mt-5 flex flex-col items-center">
                         {sort.map((link, index) => (
